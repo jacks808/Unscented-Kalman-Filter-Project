@@ -174,7 +174,7 @@ void UKF::Prediction(double delta_t) {
    * Generate sigma Point
    */
   if (DEVELOP_MODE) {
-    cout << "\n@@@@@@@@@@@@@@@@@@@@@@@@@ Predict Stage" << endl;
+    cout << "\n@@@@@@@@@@@@@@@@@@@@@@@@@@@ Predict Stage" << endl;
     cout << "n_x_" << n_x_ << endl;
     cout << "n_aug_" << n_aug_ << endl;
     cout << "lambda_" << lambda_ << endl;
@@ -265,7 +265,7 @@ void UKF::Prediction(double delta_t) {
   if (DEVELOP_MODE) {
     cout << "x_" << x_ << endl;
     cout << "P_" << P_ << endl;
-    cout << "@@@@@@@@@@@@@@@@@@@@@@@ finish prediction one time " << endl;
+    cout << "\n@@@@@@@@@@@@@@@@@@@@@@@@@@@ finish prediction one time " << endl;
   }
 }
 
@@ -280,7 +280,7 @@ void UKF::Prediction(double delta_t) {
  */
 void UKF::UpdateLidar(MeasurementPackage meas_package) {
   if (DEVELOP_MODE) {
-    cout << "@@@@@@@@@@@@@@@@@@@@@@@ Update Lidar @@@@@@@@@@@@@@@@@@@@@@@" << endl;
+    cout << "\n@@@@@@@@@@@@@@@@@@@@@@@@@@@ Update Lidar" << endl;
   }
 
   int n_z_l = 2;
@@ -374,7 +374,7 @@ void UKF::UpdateLidar(MeasurementPackage meas_package) {
  */
 void UKF::UpdateRadar(MeasurementPackage meas_package) {
   if (DEVELOP_MODE) {
-    cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@ UpdateRadar Stage" << endl;
+    cout << "\n@@@@@@@@@@@@@@@@@@@@@@@@@@@ UpdateRadar Stage" << endl;
   }
 
   int n_z_r = 3;
@@ -477,7 +477,7 @@ void UKF::UpdateRadar(MeasurementPackage meas_package) {
 #ifdef DEBUG
   cout << "x_ shape : " << x_.rows() << " , " << x_.cols() << endl;
   cout << "P_ shape : " << P_.rows() << " , " << P_.cols() << endl;
-  cout << "+++++++++++++++++++++++++++Finish UpdateRadar Stage+++++++++++++++++++++++++++" << endl;
+  cout << "\n@@@@@@@@@@@@@@@@@@@@@@@@@@@ Finish UpdateRadar Stage" << endl;
 #endif
 }
 
