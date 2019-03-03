@@ -9,7 +9,6 @@ using Eigen::MatrixXd;
 using Eigen::VectorXd;
 using std::vector;
 
-#define DEBUG
 /**
 * Initializes Unscented Kalman filter
 * This is scaffolding, do not modify
@@ -17,17 +16,17 @@ using std::vector;
 UKF::UKF() {
 
   // Open NIS data files
-  NIS_values_radar_.open( "./NISvals_radar.txt", ios::out );
-  NIS_values_laser_.open( "./NISvals_laser.txt", ios::out );
+  NIS_values_radar_.open( "./NIS_values_radar.txt", ios::out );
+  NIS_values_laser_.open( "./NIS_values_laser.txt", ios::out );
 
   // Check for errors opening the files
   if(!NIS_values_radar_.is_open() ) {
-    cout << "Error opening NISvals_radar.txt" << endl;
+    cout << "Error opening NIS_values_radar.txt" << endl;
     exit(1);
   }
 
   if(!NIS_values_laser_.is_open() ) {
-    cout << "Error opening NISvals_laser.txt" << endl;
+    cout << "Error opening NIS_values_laser.txt" << endl;
     exit(1);
   }
   // if this is false, laser measurements will be ignored (except during init)
@@ -474,11 +473,11 @@ void UKF::UpdateRadar(MeasurementPackage meas_package) {
   NIS_radar_ = z_diff.transpose() * S_radr.inverse() * z_diff;
   cout << NIS_radar_ << endl;
   NIS_values_radar_ << NIS_radar_ << endl;
-#ifdef DEBUG
-  cout << "x_ shape : " << x_.rows() << " , " << x_.cols() << endl;
-  cout << "P_ shape : " << P_.rows() << " , " << P_.cols() << endl;
-  cout << "\n@@@@@@@@@@@@@@@@@@@@@@@@@@@ Finish UpdateRadar Stage" << endl;
-#endif
+  if (DEVELOP_MODE) {
+    cout << "x_ shape : " << x_.rows() << " , " << x_.cols() << endl;
+    cout << "P_ shape : " << P_.rows() << " , " << P_.cols() << endl;
+    cout << "\n@@@@@@@@@@@@@@@@@@@@@@@@@@@ Finish UpdateRadar Stage" << endl;
+  }
 }
 
 double UKF::normalize(double value) {
